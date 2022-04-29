@@ -17,9 +17,7 @@ class DB{
             `SELECT
                 *
             FROM
-                role
-            LEFT JOIN
-                department ON role.department_id = department.id`
+                role`
         )
     }
 
@@ -27,18 +25,9 @@ class DB{
     viewAllEmployees() {
         return this.connection.promise().query(
             `SELECT
-                employee.id,
-                employee.first_name,
-                employee.last_name,
-                role.title,
-                role.salary,
-                concat(manager.first_name, ' ', manager.last_name) AS manager
+                *
             FROM
-                employee
-            LEFT JOIN
-                role ON employee.role_id = role.id
-            LEFT JOIN
-                employee manager ON manager.id = employee.manager_id`
+                employee`
         )
     }
 
@@ -48,7 +37,7 @@ class DB{
             `INSERT INTO 
                 department
             SET 
-                ?`, department
+                ?;`, department
         )
     }
 
