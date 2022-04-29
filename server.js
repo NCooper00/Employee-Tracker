@@ -1,13 +1,13 @@
 const inquirer = require('inquirer');
-const db = require('./db/connection');
+const db = require('./db');
 require('console.table');
 
 
 
 async function mainMenu() {
-    const {choice} = await inquirer.prompt([
+    const choice = await inquirer.prompt([
         {
-            name: 'selection',
+            name: 'choice',
             type: 'list',
             message: 'What would you like to do?',
             choices: [
@@ -21,9 +21,11 @@ async function mainMenu() {
                 'Quit'
             ]
          }     
-    ]) 
-    switch(choice){
+    ])
+    .then (res => {
+    switch(res.choice){
         case 'View All Departments':
+            console.log('--------1--------')
             return viewAllDepartments();
         case 'View All Roles':
             return viewAllRoles();
@@ -38,8 +40,9 @@ async function mainMenu() {
         case 'Update Role':
             return updateRole()
         case 'Quit':
-            return quitApp()
+            process.exit()
         };
+    })
 };
 
 

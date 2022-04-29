@@ -1,4 +1,4 @@
-const connection = require('./connection');
+const connection = require('./connections');
 
 class DB{
     constructor(connection) {
@@ -7,17 +7,15 @@ class DB{
     
 // DEPARTMENTS
     viewAllDepartments(){
-        return this.connection.promise().query(`SELECT department.id, department.name FROM department`)
+        console.log('----------------')
+        return this.connection.promise().query(`SELECT * FROM department`)
     }
 
 // ROLES
     viewAllRoles() {
         return this.connection.promise().query(
             `SELECT
-                role.id, 
-                role.title, 
-                role.salary, 
-                department.name
+                *
             FROM
                 role
             LEFT JOIN
