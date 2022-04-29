@@ -24,7 +24,11 @@ Listed below are the comand(s) required to install the necessary dependencies.
                         
 ## Usage
                         
-Type "node server.js" to start, then use the arrow keys to navigate to the choice you'd like, and press enter to select it. Fill out any information that it asks for and it will do the rest.           
+Type "node server.js" to start, then use the arrow keys to navigate to the choice you'd like, and press enter to select it. Fill out any information that it asks for and it will do the rest.      
+
+## Video Demo
+
+https://drive.google.com/file/d/19xKphtnlJOJYXnqXbWFQ2hIUNYzXcWXh/view
                         
 ## Features
                         
