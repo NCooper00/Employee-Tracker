@@ -25,7 +25,6 @@ async function mainMenu() {
     .then (res => {
     switch(res.choice){
         case 'View All Departments':
-            console.log('--------1--------')
             return viewAllDepartments();
         case 'View All Roles':
             return viewAllRoles();
@@ -155,17 +154,11 @@ async function addEmployee() {
 
     const [roles] = await db.viewAllRoles();
     const [employees] = await db.viewAllEmployees();
-    const [managers] = await db.managerSelect(employees)
 
     const rolesChoices = roles.map(({id, title}) => ({
         name: title,
         value: id
     }));
-
-    const managerChoices = managers.map(({id, first_name, last_name}) => ({
-        name: `${first_name} ${last_name}`,
-        value: id
-    }))
 
     const employee = await inquirer.prompt([
         {
@@ -183,13 +176,7 @@ async function addEmployee() {
             type: 'list',
             message: "What is the employee's role?",
             choices: rolesChoices
-        },
-        {
-            name: 'manager_id',
-            type: 'list',
-            message: "Who is the employee's manager?",
-            choices: managerChoices
-        },
+        }
     ])
 
     
@@ -240,30 +227,6 @@ async function updateRole() {
     console.log(`Updated Role!`)
 
     mainMenu();
-}
-
-
-// QUIT
-async function quitApp(){
-
-    const wantToQuit = await inquirer.prompt([
-        {
-            name: 'quit',
-            type: 'confirm',
-            message: 'Would you like to quit?'
-        }
-    ])
-
-    const {quit} = wantToQuit
-    
-    switch(quit){
-        case true:
-
-            process.exit();
-        case false:
-
-            mainMenu();
-    }
 }
 
 

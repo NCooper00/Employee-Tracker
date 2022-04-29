@@ -7,7 +7,6 @@ class DB{
     
 // DEPARTMENTS
     viewAllDepartments(){
-        console.log('----------------')
         return this.connection.promise().query(`SELECT * FROM department`)
     }
 
